@@ -1,0 +1,20 @@
+pipeline {
+  agent any
+
+  stages {
+
+    stage('Checkout Source') {
+      steps {
+        git 'https://github.com/dung2k1deptrai/ci-cd.git'
+      }
+    }
+
+    stage('Deploy to K8s') {
+    withKubeConfig([credentialsId: '054c26c1-e3dc-400d-aa25-f6c0cff5fed7']) {
+        sh './kubectl apply -f deployment-example.yaml'
+        sh './kubectl get pods'
+    }
+
+  }
+
+}
