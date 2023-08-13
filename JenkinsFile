@@ -8,12 +8,6 @@ pipeline {
         git 'https://github.com/dung2k1deptrai/ci-cd.git'
       }
     }
-
-    stage('Deploy to K8s') {
-      steps {
-          withKubeConfig([credentialsId: '054c26c1-e3dc-400d-aa25-f6c0cff5fed7']) {
-            sh './kubectl get pods'
-    }
   }
 }
 }
